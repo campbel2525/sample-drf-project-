@@ -1,0 +1,21 @@
+
+put:
+  tags:
+    - accounts
+  summary: プロフィール更新
+  description: description
+  operationId: accounts_update_profile
+  security:
+    - Authentication: []
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../requests/accounts_update_profile.yml"
+  responses:
+    "200":
+      description: 正常
+      content:
+        application/json:
+          schema:
+            $ref: "../responses/models/user.yml"

@@ -1,0 +1,29 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+pymysql = "*"
+django-environ = "*"
+pytz = "*"
+django-cors-headers = "*"
+pyjwt = "*"
+gunicorn = "*"
+
+[dev-packages]
+flake8 = "*"
+mypy = "*"
+black = "*"
+isort = "*"
+django-stubs = "*"
+types-pymysql = "*"
+debugpy = "*"
+djangorestframework-stubs = "*"
+factory-boy = "*"
+types-pytz = "*"
+
+[requires]
+python_version = "3.12"

@@ -1,0 +1,12 @@
+description: 正常系
+type: object
+required:
+  - access_token
+  - refresh_token
+properties:
+  access_token:
+    type: string
+    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI4OTkwNTY2LCJ0eXAiOiJhY2Nlc3NfdG9rZW4ifQ.xGXaxcSASKbPF9a1dfwrRzs21weGV47XZ-95O7YZbpc"
+  refresh_token:
+    type: string
+    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI5NTk1MzY2LCJ0eXAiOiJyZWZyZXNoX3Rva2VuIn0.xH95kbAKawD3o6vWzbMy0RfFDhOghdI0MOhtRTO_sRM"

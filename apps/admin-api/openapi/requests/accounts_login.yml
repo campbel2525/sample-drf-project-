@@ -1,0 +1,11 @@
+type: object
+required:
+  - email
+  - password
+properties:
+  email:
+    type: string
+    example: "admin1@example.com"
+  password:
+    type: string
+    example: "test1234"

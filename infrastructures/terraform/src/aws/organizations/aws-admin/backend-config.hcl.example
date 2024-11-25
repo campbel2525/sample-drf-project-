@@ -1,0 +1,3 @@
+profile = "aws-admin"
+bucket  = "" # 本番、stgで分けること
+region  = ""

@@ -1,0 +1,20 @@
+description: 正常系
+type: object
+required:
+  - "email"
+  - "name"
+  - "created_at"
+  - "updated_at"
+properties:
+  email:
+    type: string
+    example: "admin1@example.com"
+  name:
+    type: string
+    example: "プロジェクト1"
+  created_at:
+    type: string
+    example: "2024-01-01T00:00:00.000000Z"
+  updated_at:
+    type: string
+    example: "2024-01-01T00:00:00.000000Z"

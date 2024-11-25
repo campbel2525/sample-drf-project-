@@ -1,0 +1,15 @@
+get:
+  tags:
+    - accounts
+  summary: 自分の情報を取得する
+  description: description
+  operationId: accounts_me
+  security:
+    - Authentication: []
+  responses:
+    "200":
+      description: 正常
+      content:
+        application/json:
+          schema:
+            $ref: "../responses/models/user.yml"

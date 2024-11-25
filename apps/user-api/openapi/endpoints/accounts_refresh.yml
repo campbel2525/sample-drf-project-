@@ -1,0 +1,19 @@
+
+post:
+  tags:
+    - accounts
+  summary: リフレッシュトークンから新しいトークンを取得する
+  description: description
+  operationId: accounts_refresh
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../requests/accounts_refresh.yml"
+  responses:
+    "200":
+      description: 成功した場合
+      content:
+        application/json:
+          schema:
+            $ref: "../responses/accounts_token.yml"

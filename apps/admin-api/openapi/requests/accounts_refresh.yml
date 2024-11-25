@@ -1,0 +1,7 @@
+type: object
+required:
+  - refresh_token
+properties:
+  refresh_token:
+    type: string
+    example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZXhwIjoxNzI5NTk1MzY2LCJ0eXAiOiJyZWZyZXNoX3Rva2VuIn0.xH95kbAKawD3o6vWzbMy0RfFDhOghdI0MOhtRTO_sRM"
