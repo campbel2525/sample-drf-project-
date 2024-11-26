@@ -51,10 +51,7 @@ export default function Home() {
           </Link>
         </p>
         <p>
-          <Link
-            href={frontPaths.updateProfile}
-            style={{ textDecoration: 'underline' }}
-          >
+          <Link href={frontPaths.updateProfile} style={{ textDecoration: 'underline' }}>
             update profile
           </Link>
         </p>
