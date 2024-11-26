@@ -12,5 +12,6 @@ class Command(BaseCommand):
         if not settings.DEBUG:
             print("デバッグ環境ではないため実行できません")
             return
+
         AdminUserSeeder().handle()
         UserSeeder().handle()
