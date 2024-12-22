@@ -35,9 +35,15 @@ down: ## 開発環境down
 
 destroy: ## 開発環境削除
 	make down
-	docker network ls -qf name=$(pn) | xargs docker network rm
-	docker container ls -a -qf name=$(pn) | xargs docker container rm
-	docker volume ls -qf name=$(pn) | xargs docker volume rm
+	if [ -n "$(docker network ls -qf name=$(pn))" ]; then \
+		docker network ls -qf name=$(pn) | xargs docker network rm; \
+	fi
+	if [ -n "$(docker container ls -a -qf name=$(pn))" ]; then \
+		docker container ls -a -qf name=$(pn) | xargs docker container rm; \
+	fi
+	if [ -n "$(docker volume ls -qf name=$(pn))" ]; then \
+		docker volume ls -qf name=$(pn) | xargs docker volume rm; \
+	fi
 
 reset: ## DBのリセット
 	docker compose -f $(pf) -p $(pn) exec -it admin-api pipenv run python manage.py drop_all_tables

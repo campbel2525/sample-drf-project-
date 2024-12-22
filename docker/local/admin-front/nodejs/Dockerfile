@@ -14,7 +14,7 @@ WORKDIR /project
 COPY . /project/
 
 # npmを最新バージョンにアップグレード
-RUN npm install -g npm@latest
+RUN npm install -g npm@10
 
 # # ライブラリのインストール
 # RUN npm install --save-dev
