@@ -112,20 +112,13 @@ check: ## コードフォーマット
 # mak test
 
 admin-api-run: ## サーバー起動
-# docker compose -f $(pf) -p $(pn) exec -it admin-api pipenv run uvicorn main:app --host 0.0.0.0 --reload --port 8000
 	docker compose -f $(pf) -p $(pn) exec -it admin-api pipenv run python manage.py runserver 0.0.0.0:8000
 
-
 user-api-run: ## サーバー起動
-# docker compose -f $(pf) -p $(pn) exec -it user-api pipenv run uvicorn main:app --host 0.0.0.0 --reload --port 8000
 	docker compose -f $(pf) -p $(pn) exec -it user-api pipenv run python manage.py runserver 0.0.0.0:8001
-
 
 admin-front-run: ## サーバー起動
 	docker compose -f $(pf) -p $(pn) exec -it admin-front npx next dev -p 3000
-
-# admin-front-run-preview: ## サーバー起動
-# 	docker compose -f $(pf) -p $(pn) exec -it admin-front npm run preview
 
 admin-front-build-run: ## サーバー起動
 	docker compose -f $(pf) -p $(pn) exec -it admin-front npm run build
@@ -133,9 +126,6 @@ admin-front-build-run: ## サーバー起動
 
 user-front-run: ## サーバー起動
 	docker compose -f $(pf) -p $(pn) exec -it user-front npx next dev -p 3001
-
-# user-front-run-preview: ## サーバー起動
-# 	docker compose -f $(pf) -p $(pn) exec -it user-front npm run preview
 
 user-front-build-run: ## サーバー起動
 	docker compose -f $(pf) -p $(pn) exec -it user-front npm run build

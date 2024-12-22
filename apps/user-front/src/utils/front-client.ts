@@ -1,4 +1,5 @@
 import Cookies from 'js-cookie'
+import {CSRF_TOKEN_COOKIE_NAME} from '@/config/settings'
 
 // APIリクエスト
 export const client = async (
@@ -43,7 +44,7 @@ export const client = async (
 // クッキーのcsrfトークンを取得
 // 存在しない場合はcsrfトークンを取得する
 export const getCookieValue = async (): Promise<string> => {
-  const csrfToken = Cookies.get('csrf_token')
+  const csrfToken = Cookies.get(CSRF_TOKEN_COOKIE_NAME)
   if (csrfToken) {
     return csrfToken
   }
@@ -51,7 +52,7 @@ export const getCookieValue = async (): Promise<string> => {
   // csrfトークンクッキーにセット
   await fetch('/api/csrf-token')
 
-  const csrfToken2 = Cookies.get('csrf_token')
+  const csrfToken2 = Cookies.get(CSRF_TOKEN_COOKIE_NAME)
   if (csrfToken2) {
     return csrfToken2
   }
