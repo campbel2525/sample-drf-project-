@@ -45,7 +45,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
 
-  // admin-frontとuser-frontで共通のtsdkが指定されていることに注意
+  // admin-frontとuser-frontで共通のsdkが指定されていることに注意
   "typescript.tsdk": "apps/admin-front/node_modules/typescript/lib",
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.enablePromptUseWorkspaceTsdk": true
