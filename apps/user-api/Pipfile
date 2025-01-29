@@ -1,0 +1,35 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+pymysql = "*"
+django-environ = "*"
+pytz = "*"
+django-cors-headers = "*"
+pyjwt = "*"
+tiktoken = "*"
+langchain = "*"
+langchain-openai = "*"
+openai = "*"
+beautifulsoup4 = "*"
+gunicorn = "*"
+
+[dev-packages]
+flake8 = "*"
+mypy = "*"
+black = "*"
+isort = "*"
+django-stubs = "*"
+types-pymysql = "*"
+debugpy = "*"
+djangorestframework-stubs = "*"
+factory-boy = "*"
+types-pytz = "*"
+types-beautifulsoup4 = "*"
+
+[requires]
+python_version = "3.12"

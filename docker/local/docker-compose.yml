@@ -1,0 +1,125 @@
+services:
+  # ---------------------------------
+  # database
+  # ---------------------------------
+  db:
+    image: mysql/mysql-server:8.0
+    platform: linux/amd64
+    environment:
+      MYSQL_ROOT_PASSWORD: secret
+    volumes:
+      - db-data80:/var/lib/mysql
+    ports:
+      - 3306:3306
+    networks:
+      - shared-network
+      - default
+
+  # ---------------------------------
+  # mailhog
+  # ---------------------------------
+  mailhog:
+    image: mailhog/mailhog
+    platform: linux/amd64
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+
+  # ---------------------------------
+  # admin-api
+  # ---------------------------------
+  admin-api:
+    restart: "no"
+    tty: true
+    build:
+      context: ${ADMIN_API_CONTEXT}
+      dockerfile: ${ADMIN_API_DOCKERFILE}
+    depends_on:
+      - db
+    ports:
+      - "0.0.0.0:9000:9000" # デバッグ用
+      - "0.0.0.0:8000:8000" # webサーバー
+    volumes:
+      - ${ADMIN_API_CONTEXT}:/project
+      - ../../apps/core/api/base_models:/project/app/core/base_models
+      - ../../apps/core/api/factories:/project/app/core/factories
+      - ../../apps/core/api/authentications:/project/app/core/authentications
+      - ../../apps/core/api/enums:/project/app/core/enums
+    networks:
+      - shared-network
+      - default
+  user-api-swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ${ADMIN_API_CONTEXT}/openapi:/usr/share/nginx/html/openapi/
+    environment:
+      API_URL: ./openapi/default.yml
+
+  # ---------------------------------
+  # user-api
+  # ---------------------------------
+  user-api:
+    restart: "no"
+    tty: true
+    build:
+      context: ${USER_API_CONTEXT}
+      dockerfile: ${USER_API_DOCKERFILE}
+    depends_on:
+      - db
+    ports:
+      - "0.0.0.0:9001:9001" # デバッグ用
+      - "0.0.0.0:8001:8001" # webサーバー
+    volumes:
+      - ${USER_API_CONTEXT}:/project
+      - ../../apps/core/api/base_models:/project/app/core/base_models
+      - ../../apps/core/api/factories:/project/app/core/factories
+      - ../../apps/core/api/authentications:/project/app/core/authentications
+      - ../../apps/core/api/enums:/project/app/core/enums
+    networks:
+      - shared-network
+      - default
+  admin-api-swagger:
+    image: swaggerapi/swagger-ui
+    ports:
+      - "127.0.0.1:8081:8080"
+    volumes:
+      - ${USER_API_CONTEXT}/openapi:/usr/share/nginx/html/openapi/
+    environment:
+      API_URL: ./openapi/default.yml
+
+  # ---------------------------------
+  # admin-front
+  # ---------------------------------
+  admin-front:
+    restart: "no"
+    tty: true
+    build:
+      context: ${ADMIN_FRONT_CONTEXT}
+      dockerfile: ${ADMIN_FRONT_DOCKERFILE}
+    ports:
+      - "0.0.0.0:3000:3000" # webサーバー
+    volumes:
+      - ${ADMIN_FRONT_CONTEXT}:/project
+
+  # ---------------------------------
+  # user-front
+  # ---------------------------------
+  user-front:
+    restart: "no"
+    tty: true
+    build:
+      context: ${USER_FRONT_CONTEXT}
+      dockerfile: ${USER_FRONT_DOCKERFILE}
+    ports:
+      - "0.0.0.0:3001:3001" # webサーバー
+    volumes:
+      - ${USER_FRONT_CONTEXT}:/project
+
+volumes:
+  db-data80:
+
+networks:
+  shared-network:
+    name: ${PROJECT_NAME}-network

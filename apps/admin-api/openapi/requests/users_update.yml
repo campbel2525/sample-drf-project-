@@ -1,0 +1,19 @@
+type: object
+required:
+  - email
+  - name
+properties:
+  email:
+    type: string
+    example: "user1@example.com"
+    required: true
+  password:
+    type: string
+    example: null
+  name:
+    type: string
+    example: "user1"
+    required: true
+  is_active:
+    type: boolean
+    example: true

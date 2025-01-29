@@ -1,0 +1,25 @@
+# providerのプロファイル名
+aws_default_profile = ""
+
+# 東京リージョンのelbのアカウントIDのため固定
+aws_tokyo_elb_account_id = ""
+
+domain     = ""
+aws_region = "ap-northeast-1"
+
+# db
+db_name     = "db"
+db_password = "password"
+
+# github
+github_owner                     = ""
+github_token                     = ""
+github_target_repository         = ""
+github_target_branch             = ""
+github_repository_webhook_secret = "" # ランダムな文字列
+aws_codepipeline_webhook_secret  = ""  # ランダムな文字列
+
+# domain
+domain = ""
+admin_front_domain = ""
+user_front_domain  = ""

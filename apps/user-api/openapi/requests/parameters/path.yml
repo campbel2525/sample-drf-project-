@@ -1,0 +1,5 @@
+id:
+  in: path
+  name: id
+  type: integer
+  example: 1

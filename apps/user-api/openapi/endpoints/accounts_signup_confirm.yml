@@ -1,0 +1,19 @@
+
+post:
+  tags:
+    - accounts
+  summary: 新規登録 確認
+  description: description
+  operationId: accounts_login_confirm
+  requestBody:
+    content:
+      application/json:
+        schema:
+          $ref: "../requests/one_time_password.yml"
+  responses:
+    "200":
+      description: 正常
+      content:
+        application/json:
+          schema:
+            $ref: "../responses/accounts_token.yml"

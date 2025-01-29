@@ -1,0 +1,20 @@
+get:
+  tags:
+    - users
+  summary: 一覧
+  description: description
+  operationId: users-list
+  security:
+    - Authentication: []
+  responses:
+    "200":
+      description: 正常
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                type: array
+                items:
+                  $ref: "../responses/models/user.yml"

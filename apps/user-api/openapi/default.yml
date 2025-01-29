@@ -1,0 +1,56 @@
+openapi: 3.0.0
+info:
+  title: Service API
+  version: 0.0.1
+  description: |
+    swagger
+components:
+  securitySchemes:
+    Authentication:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: access_token。<br>
+        `Authorization Bearer eyj...` <br>
+        ↑このようにヘッダにつけて飛ばしてください。
+servers:
+  - url: http://localhost:8001/
+    description: api
+paths:
+  /hc/:
+    get:
+      tags:
+        - HealthCheck
+      summary: ALB Health-Check Endpoint.
+      description: ALB Health-Check Endpoint.
+      responses:
+        "200":
+          description: Health Check.
+          content:
+            application/json:
+              example: "Healthy."
+  # accounts
+  /api/v1/accounts/login/:
+    $ref: "endpoints/accounts_login.yml"
+  /api/v1/accounts/login/confirm/:
+    $ref: "endpoints/accounts_login_confirm.yml"
+  /api/v1/accounts/me/:
+    $ref: "endpoints/accounts_me.yml"
+  /api/v1/accounts/refresh/:
+    $ref: "endpoints/accounts_refresh.yml"
+  /api/v1/accounts/signup/:
+    $ref: "endpoints/accounts_signup.yml"
+  /api/v1/accounts/signup/confirm/:
+    $ref: "endpoints/accounts_signup_confirm.yml"
+  /api/v1/accounts/update-profile/:
+    $ref: "endpoints/accounts_update_profile.yml"
+  /api/v1/accounts/update-password/:
+    $ref: "endpoints/accounts_update_password.yml"
+  /api/v1/accounts/update-email/:
+    $ref: "endpoints/accounts_update_email.yml"
+  /api/v1/accounts/update-email/confirm/:
+    $ref: "endpoints/accounts_update_email_confirm.yml"
+  /api/v1/accounts/reset-password/:
+    $ref: "endpoints/accounts_reset_password.yml"
+  /api/v1/accounts/reset-password/confirm/:
+    $ref: "endpoints/accounts_reset_password_confirm.yml"
