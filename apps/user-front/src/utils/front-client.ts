@@ -22,7 +22,7 @@ export const client = async (
   // }
 
   // CSRFトークンをセット
-  const csrfToken = await getCookieValue()
+  const csrfToken = await getCsrfToken()
   headers['X-CSRF-TOKEN'] = csrfToken
 
   if (body && Object.keys(body).length > 0) {
@@ -43,7 +43,7 @@ export const client = async (
 
 // クッキーのcsrfトークンを取得
 // 存在しない場合はcsrfトークンを取得する
-export const getCookieValue = async (): Promise<string> => {
+export const getCsrfToken = async (): Promise<string> => {
   const csrfToken = Cookies.get(CSRF_TOKEN_COOKIE_NAME)
   if (csrfToken) {
     return csrfToken
@@ -56,6 +56,5 @@ export const getCookieValue = async (): Promise<string> => {
   }
 
   const data = await result.json()
-  const csrfToken2 = data.csrf_token
-  return csrfToken2
+  return data.csrf_token
 }

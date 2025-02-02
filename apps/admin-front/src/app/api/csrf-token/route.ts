@@ -14,7 +14,7 @@ export async function GET(): Promise<NextResponse> {
     const res = new NextResponse(JSON.stringify(data))
     res.cookies.set(CSRF_TOKEN_COOKIE_NAME, csrfToken, {
       httpOnly: false,
-      secure: process.env.NODE_ENV === 'production',
+      secure: false,
       sameSite: 'lax',
       path: '/',
       maxAge: CSRF_TOKEN_EXPIRES_SECONDS, // 15分
