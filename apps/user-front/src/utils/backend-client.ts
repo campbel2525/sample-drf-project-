@@ -3,12 +3,7 @@
 import { NextResponse } from 'next/server'
 
 import { getAccessToken } from './jwt'
-
-// const body = await request.json() || undefined
-
-// Object.fromEntries(request.nextUrl.searchParams.entries())
-
-// return client(method, path, request.nextUrl.searchParams, body)
+import { ACCESS_TOKEN_COOKIE_NAME } from '@/config/settings'
 
 // エラーレスポンス
 export const errorResponse = async (
@@ -109,7 +104,7 @@ export const fetchClient = async (
 
   const accessToken = getAccessToken()
   if (accessToken) {
-    headers['Cookie'] = `access_token=${accessToken}`
+    headers['Cookie'] = `${ACCESS_TOKEN_COOKIE_NAME}=${accessToken}`
   }
   if (body && Object.keys(body).length > 0) {
     headers['Content-Type'] = 'application/json' as string

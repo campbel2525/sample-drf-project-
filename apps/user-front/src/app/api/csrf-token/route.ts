@@ -8,7 +8,10 @@ export async function GET(): Promise<NextResponse> {
   try {
     const csrfToken = generateCsrfToken()
 
-    const res = new NextResponse(null)
+    const data = {
+      csrf_token: csrfToken,
+    }
+    const res = new NextResponse(JSON.stringify(data))
     res.cookies.set(CSRF_TOKEN_COOKIE_NAME, csrfToken, {
       httpOnly: false,
       secure: process.env.NODE_ENV === 'production',

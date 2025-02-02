@@ -1,5 +1,5 @@
 import Cookies from 'js-cookie'
-import {CSRF_TOKEN_COOKIE_NAME} from '@/config/settings'
+import { CSRF_TOKEN_COOKIE_NAME } from '@/config/settings'
 
 // APIリクエスト
 export const client = async (
@@ -50,12 +50,12 @@ export const getCookieValue = async (): Promise<string> => {
   }
 
   // csrfトークンクッキーにセット
-  await fetch('/api/csrf-token')
-
-  const csrfToken2 = Cookies.get(CSRF_TOKEN_COOKIE_NAME)
-  if (csrfToken2) {
-    return csrfToken2
+  const result = await fetch('/api/csrf-token')
+  if (!result.ok) {
+    throw new Error('Failed to get CSRF token')
   }
 
-  throw new Error('CSRF token not found')
+  const data = await result.json()
+  const csrfToken2 = data.csrf_token
+  return csrfToken2
 }
