@@ -5,10 +5,17 @@ import { CSRF_TOKEN_COOKIE_NAME, CSRF_TOKEN_HEADER_NAME } from '@/config/setting
 
 // CSRFトークン生成関数
 export const generateCsrfToken = () => {
-  if (!process.env.SECRET_KEY) {
+  const secretKey = process.env.SECRET_KEY
+  if (!secretKey) {
     throw new Error('SECRET_KEY is not defined')
   }
-  return jwt.sign({}, process.env.SECRET_KEY, { expiresIn: '15m' }) // 15分有効なトークン
+
+  const now = Math.floor(new Date().getTime() / 1000) // 現在のUNIXタイムスタンプ
+  return jwt.sign(
+    { iat: now }, // 明示的に `iat` を指定する
+    secretKey,
+    { expiresIn: '15m' } // 15分後に有効期限が切れる
+  )
 }
 
 // CSRFトークンの保存
@@ -26,13 +33,10 @@ export const checkCsrfToken = (request: NextRequest) => {
     throw new Error('CSRF token mismatch')
   }
 
-  // トークンの署名を検証
-  try {
-    if (!process.env.SECRET_KEY) {
-      throw new Error('SECRET_KEY is not defined')
-    }
-    jwt.verify(csrfTokenFromCookie, process.env.SECRET_KEY) // トークンの署名を検証
-  } catch (err) {
-    throw new Error('Invalid CSRF token')
+  const secretKey = process.env.SECRET_KEY
+  if (!secretKey) {
+    throw new Error('SECRET_KEY is not defined')
   }
+
+  jwt.verify(csrfTokenFromCookie, secretKey) // トークンの署名を検証
 }
