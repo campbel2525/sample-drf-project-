@@ -1,3 +1,5 @@
+export const dynamic = 'force-dynamic'
+
 import { NextResponse } from 'next/server'
 
 import { CSRF_TOKEN_COOKIE_NAME, CSRF_TOKEN_EXPIRES_SECONDS } from '@/config/settings'
